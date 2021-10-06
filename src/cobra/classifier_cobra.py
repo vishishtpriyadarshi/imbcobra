@@ -132,3 +132,16 @@ class CobraClassifier:
         self.X_l, self.y_l = self.X[k : ], self.y[k : ]
         
         return self
+
+
+def execute_cobra(X_train, y_train, X_test):
+  print("[Executing]: Running Cobra Model ...\n")
+
+  # Model Fitting
+  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge'])  
+  model.fit(X_train, y_train)
+
+  # Predictions on test dataset
+  y_pred = model.predict(X_test)
+
+  return y_pred

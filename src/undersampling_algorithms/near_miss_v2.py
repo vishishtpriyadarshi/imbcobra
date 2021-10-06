@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 
-def near_miss_v2(X, y, majority_class, k = 3, ratio = 4.5, knn_algorithm = 'auto', knn_metric = 'euclidean'):
+def undersample(X, y, majority_class, k = 3, ratio = 4.5, knn_algorithm = 'auto', knn_metric = 'euclidean'):
   n, _ = X.shape
   verdict = np.ones(n, dtype=bool)
 

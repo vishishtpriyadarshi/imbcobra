@@ -1,8 +1,12 @@
-import nump as np
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
 from sklearn import datasets
+
+import cobra.classifier_cobra as classifier_cobra
+import models.parent_model as parent_model
+from undersampling_algorithms import *
 
 
 def prepare_data(seed, choice=1):
@@ -222,18 +226,18 @@ def prepare_data(seed, choice=1):
 
 
 def main():
-    X, y, majority_class_label = prepare_data(32, choice=6)
+    X, y, majority_class_label = prepare_data(32, choice=5)
     num_splits, seed = 2, 32
 
-    models = [cobra_classifier_scratch]
+    models = [classifier_cobra.execute_cobra]
 
     for m in models:
       print("\n\n#############################  MODEL -", m.__name__, "  #############################")
       print("\n=======================  Executing without undersampling  =======================")
-      execute_model(X, y, num_splits, seed, m)
+      parent_model.execute_model(X, y, num_splits, seed, m)
 
       print("\n\n=======================  Executing with undersampling  =======================")
-      execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
+      parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
   
 
 if __name__ == "__main__":

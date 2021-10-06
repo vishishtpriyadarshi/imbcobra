@@ -5,7 +5,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 from sklearn import metrics
 
-from .undersampling_algorithms.knn_und.py import knn_und
+import sys
+sys.path.insert(0, '..')
+from undersampling_algorithms import *
+import cobra.classifier_cobra
 
 
 def execute_model(X, y, num_splits, seed, model, with_undersampling = False, majority_class = 0, undersampling_method = knn_und):
@@ -26,7 +29,7 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
     # Execute Undersampling on training data
     if with_undersampling == True:
       print("[Testing]: Count of test data before Undersampling = ", X_train.shape[0])
-      verdict = undersampling_method(X_train, y_train, majority_class)
+      verdict = undersampling_method.undersample(X_train, y_train, majority_class)
 
       X_train = X_train[verdict, :]
       y_train = y_train[verdict]

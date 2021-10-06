@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 
-def condensed_knn(X, y, majority_class, knn_algorithm = 'auto', knn_metric = 'euclidean'):
+def undersample(X, y, majority_class, knn_algorithm = 'auto', knn_metric = 'euclidean'):
   n, _ = X.shape
   verdict = np.zeros(n, dtype=bool)
 
