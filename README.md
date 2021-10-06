@@ -6,5 +6,3 @@
 3. ``` pip3 install -r requirements.txt ```
 4. ``` cd src ```
 5. ``` python3 execute.py ```
-
-**Note:** In the file ``` execute.py ``` on line
