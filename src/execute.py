@@ -12,12 +12,14 @@ from undersampling_algorithms import *
 def prepare_data(seed, choice=1):
   if choice == 1:
     """ Dataset - 1 """
+    print("==================  Executing Random dataset  ==================")
     # Ref - https://scikit-learn.org/stable/auto_examples/datasets/plot_random_dataset.html#sphx-glr-auto-examples-datasets-plot-random-dataset-py
     X, y = datasets.make_classification(n_samples = 1000, n_classes = 2, weights = [0.2, 0.8], class_sep = 0.9, 
                                   n_features = 5, n_redundant = 1, n_informative = 3, n_clusters_per_class = 1, random_state = seed)
-
+    majority_class_label = 1
   elif choice == 2:
     """ Dataset - 2 """
+    print("==================  Red Wine Quality dataset  ==================")
     dataset = pd.read_csv('../Datasets/winequality-red.csv', sep=';')
 
     def reviews(row):
@@ -40,6 +42,7 @@ def prepare_data(seed, choice=1):
 
   elif choice == 3:
     """ Dataset - 3 """
+    print("==================  White Wine Quality dataset  ==================")
     dataset = pd.read_csv('../Datasets/winequality-white.csv', sep=';')
 
     def reviews(row):
@@ -62,6 +65,7 @@ def prepare_data(seed, choice=1):
 
   elif choice == 4:
     """ Dataset - 4 """
+    print("==================  Car evaluation dataset  ==================")
     # Ref - https://archive.ics.uci.edu/ml/datasets/car+evaluation
     dataset = pd.read_csv('../Datasets/car.data', header=None, sep=',')
     
@@ -124,6 +128,7 @@ def prepare_data(seed, choice=1):
 
   elif choice == 5:
     """ Dataset - 5 """
+    print("==================  Ecoli dataset  ==================")
     # Ref - https://archive.ics.uci.edu/ml/datasets/ecoli, https://www.kaggle.com/kannanaikkal/ecoli-uci-dataset
     dataset = pd.read_csv('../Datasets/ecoli.csv')
     
@@ -152,6 +157,7 @@ def prepare_data(seed, choice=1):
   elif choice == 6:
     """ Dataset - 6 """
     # Ref - https://archive.ics.uci.edu/ml/datasets/abalone
+    print("==================  Abalone dataset  ==================")
     dataset = pd.read_csv('../Datasets/abalone.data', header=None, sep=',')
     
     def create_target(row, val=20):
@@ -183,6 +189,7 @@ def prepare_data(seed, choice=1):
   elif choice == 7:
     """ Dataset - 7 """
     # Ref - https://archive.ics.uci.edu/ml/datasets/nursery
+    print("==================  Nursery dataset  ==================")
     dataset = pd.read_csv('../Datasets/nursery.data', header=None, sep=',')
     
     def create_target(row, val='very_recom'):
@@ -199,7 +206,7 @@ def prepare_data(seed, choice=1):
 
     features_to_encode = [0, 1, 2, 3, 4, 5, 6, 7]
     for feature in features_to_encode:
-        dataset = encode_attributes(dataset, feature)
+      dataset = encode_attributes(dataset, feature)
 
     dataset['target'] = dataset.apply(create_target, axis=1)
 
@@ -226,18 +233,31 @@ def prepare_data(seed, choice=1):
 
 
 def main():
-    X, y, majority_class_label = prepare_data(32, choice=5)
-    num_splits, seed = 2, 32
+  # ================  Menu  ================
+  print("==================  Available Options for Datasets:  ==================")
+  print("Enter following numeric values to load corresponding dataset -")
+  print("\nRandomly generated dataset\t-\t1")
+  print("Red Wine Quality\t\t-\t2")
+  print("White Wine Quality\t\t-\t3")
+  print("Car Evaluationr\t\t\t-\t4")
+  print("Ecoli\t\t\t\t-\t5")
+  print("Abalone\t\t\t\t-\t6")
+  print("Nursery\t\t\t\t-\t7\n\n")
+  # ========================================
 
-    models = [classifier_cobra.execute_cobra]
+  ch = int(input("Enter your choice (between 1 to 7): "))
+  num_splits, seed = 2, 32
+  X, y, majority_class_label = prepare_data(seed, choice=ch)
+  
+  models = [classifier_cobra.execute_cobra]
 
-    for m in models:
-      print("\n\n#############################  MODEL -", m.__name__, "  #############################")
-      print("\n=======================  Executing without undersampling  =======================")
-      parent_model.execute_model(X, y, num_splits, seed, m)
+  for m in models:
+    print("\n\n#############################  MODEL -", m.__name__, "  #############################")
+    print("\n=======================  Executing without undersampling  =======================")
+    parent_model.execute_model(X, y, num_splits, seed, m)
 
-      print("\n\n=======================  Executing with undersampling  =======================")
-      parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
+    print("\n\n=======================  Executing with undersampling  =======================")
+    parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
   
 
 if __name__ == "__main__":
