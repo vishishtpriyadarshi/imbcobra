@@ -1,0 +1,47 @@
+[Testing]: Majority class =  0 	Sum of Target variable =  35 	Length of Target variable =  336
+
+
+#############################  MODEL - cobra_classifier_scratch   #############################
+
+=======================  Executing without undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.8720238095238095
+Precision 	= 	 0.5409226190476191
+Recall 		= 	 0.5911569925983639
+F1 score 	= 	 0.5649252674724745
+
+
+=======================  Executing with undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  168
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  81 vs 18 or 450.0 %
+[Testing]: Count of test data after Undersampling =  99
+[Executing]: Running Cobra Model ...
+
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  168
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  76 vs 17 or 447.05882352941177 %
+[Testing]: Count of test data after Undersampling =  93
+[Executing]: Running Cobra Model ...
+
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.9107142857142858
+Precision 	= 	 0.6227197608114245
+Recall 		= 	 0.6648811842617842
+F1 score 	= 	 0.6431102021410434

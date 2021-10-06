@@ -1,0 +1,49 @@
+[Testing]: Majority class =  0 	Sum of Target variable =  62 	Length of Target variable =  4177
+
+
+#############################  MODEL - cobra_classifier_scratch   #############################
+
+=======================  Executing without undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.9851568102577082
+Precision 	= 	 0.4925784051288541
+Recall 		= 	 0.5
+F1 score 	= 	 0.4962614566099781
+
+
+=======================  Executing with undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  2088
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  77 vs 31 or 248.38709677419354 %
+[Testing]: Count of test data after Undersampling =  108
+[Executing]: Running Cobra Model ...
+
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  2089
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  77 vs 31 or 248.38709677419354 %
+[Testing]: Count of test data after Undersampling =  108
+[Executing]: Running Cobra Model ...
+
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.8671573091306588
+Precision 	= 	 0.5408983550166737
+Recall 		= 	 0.5433709702794169
+F1 score 	= 	 0.5421318433179698

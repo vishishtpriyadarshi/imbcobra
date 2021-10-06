@@ -1,0 +1,51 @@
+[Testing]: Majority class =  0 	Sum of Target variable =  328 	Length of Target variable =  12960
+
+
+#############################  MODEL - cobra_classifier_scratch   #############################
+
+=======================  Executing without undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.9746913580246913
+Precision 	= 	 0.48734567901234566
+Recall 		= 	 0.5
+F1 score 	= 	 0.4935917474210691
+
+
+=======================  Executing with undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  6480
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  410 vs 164 or 250.0 %
+[Testing]: Count of test data after Undersampling =  574
+[Executing]: Running Cobra Model ...
+
+/usr/local/lib/python3.7/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  6480
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  410 vs 164 or 250.0 %
+[Testing]: Count of test data after Undersampling =  574
+[Executing]: Running Cobra Model ...
+
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.975
+Precision 	= 	 0.6626063789188467
+Recall 		= 	 0.5105519856655185
+F1 score 	= 	 0.5767252106

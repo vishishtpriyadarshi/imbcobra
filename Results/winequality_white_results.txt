@@ -1,0 +1,45 @@
+[Testing]: Majority class =  0 	Sum of Target variable =  180 	Length of Target variable =  4898
+
+
+#############################  MODEL - cobra_classifier_scratch   #############################
+
+=======================  Executing without undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Executing]: Running Cobra Model ...
+
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.9971416904859126
+Precision 	= 	 0.9985221349282057
+Recall 		= 	 0.9611111111111111
+F1 score 	= 	 0.9794595192845916
+
+
+=======================  Executing with undersampling  =======================
+
+****************  Executing iteration - 1 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  2449
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  405 vs 90 or 450.0 %
+[Testing]: Count of test data after Undersampling =  495
+[Executing]: Running Cobra Model ...
+
+
+****************  Executing iteration - 2 of KFold Data split  ****************
+[Testing]: Count of test data before Undersampling =  2449
+[Testing]: Count of majority samples after undersampling vs Count of minority samples =  405 vs 90 or 450.0 %
+[Testing]: Count of test data after Undersampling =  495
+[Executing]: Running Cobra Model ...
+
+
+---------------  Cross-validated Evaluation Metrics  ---------------
+
+Accuracy 	= 	 0.9995916700694161
+Precision 	= 	 0.9997882253282507
+Recall 		= 	 0.9944444444444445
+F1 score 	= 	 0.9971091752417969
