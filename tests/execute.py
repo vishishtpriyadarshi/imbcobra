@@ -20,7 +20,7 @@ def prepare_data(seed, choice=1):
   elif choice == 2:
     """ Dataset - 2 """
     print("==================  Red Wine Quality dataset  ==================")
-    dataset = pd.read_csv('../Datasets/winequality-red.csv', sep=';')
+    dataset = pd.read_csv('./datasets/winequality-red.csv', sep=';')
 
     def reviews(row):
       if row['quality'] > 7:
@@ -43,7 +43,7 @@ def prepare_data(seed, choice=1):
   elif choice == 3:
     """ Dataset - 3 """
     print("==================  White Wine Quality dataset  ==================")
-    dataset = pd.read_csv('../Datasets/winequality-white.csv', sep=';')
+    dataset = pd.read_csv('./datasets/winequality-white.csv', sep=';')
 
     def reviews(row):
       if row['quality'] > 7:
@@ -67,7 +67,7 @@ def prepare_data(seed, choice=1):
     """ Dataset - 4 """
     print("==================  Car evaluation dataset  ==================")
     # Ref - https://archive.ics.uci.edu/ml/datasets/car+evaluation
-    dataset = pd.read_csv('../Datasets/car.data', header=None, sep=',')
+    dataset = pd.read_csv('./datasets/car.data', header=None, sep=',')
     
     """ Pre-processing """
     def create_target(row, val='vgood'):
@@ -130,7 +130,7 @@ def prepare_data(seed, choice=1):
     """ Dataset - 5 """
     print("==================  Ecoli dataset  ==================")
     # Ref - https://archive.ics.uci.edu/ml/datasets/ecoli, https://www.kaggle.com/kannanaikkal/ecoli-uci-dataset
-    dataset = pd.read_csv('../Datasets/ecoli.csv')
+    dataset = pd.read_csv('./datasets/ecoli.csv')
     
     def create_target(row, val='imU'):
       if row['SITE'] == val:
@@ -158,7 +158,7 @@ def prepare_data(seed, choice=1):
     """ Dataset - 6 """
     # Ref - https://archive.ics.uci.edu/ml/datasets/abalone
     print("==================  Abalone dataset  ==================")
-    dataset = pd.read_csv('../Datasets/abalone.data', header=None, sep=',')
+    dataset = pd.read_csv('./datasets/abalone.data', header=None, sep=',')
     
     def create_target(row, val=20):
       if row[8] >= val:
@@ -190,7 +190,7 @@ def prepare_data(seed, choice=1):
     """ Dataset - 7 """
     # Ref - https://archive.ics.uci.edu/ml/datasets/nursery
     print("==================  Nursery dataset  ==================")
-    dataset = pd.read_csv('../Datasets/nursery.data', header=None, sep=',')
+    dataset = pd.read_csv('./datasets/nursery.data', header=None, sep=',')
     
     def create_target(row, val='very_recom'):
       if row[8] == val:
