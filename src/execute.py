@@ -235,7 +235,7 @@ def prepare_data(seed, choice=1):
 def main():
   # ================  Menu  ================
   print("==================  Available Options for Datasets:  ==================")
-  print("Enter following numeric values to load corresponding dataset -")
+  print("Choose dataset -")
   print("\nRandomly generated dataset\t-\t1")
   print("Red Wine Quality\t\t-\t2")
   print("White Wine Quality\t\t-\t3")
@@ -243,9 +243,12 @@ def main():
   print("Ecoli\t\t\t\t-\t5")
   print("Abalone\t\t\t\t-\t6")
   print("Nursery\t\t\t\t-\t7\n\n")
+  ch = int(input("Enter your choice (between 1 to 7): "))
+  
+
+  print("==================  Available Options for Undersampling algorithms:  ==================")
   # ========================================
 
-  ch = int(input("Enter your choice (between 1 to 7): "))
   num_splits, seed = 2, 32
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
