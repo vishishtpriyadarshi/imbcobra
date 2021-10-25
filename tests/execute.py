@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 
 from sklearn import datasets
 
-import cobra.classifier_cobra as classifier_cobra
-import models.parent_model as parent_model
-from undersampling_algorithms import *
+from cobraclassifier import classifier_cobra, parent_model
+from cobraclassifier.undersampling_algorithms import *
 
 
 def prepare_data(seed, choice=1):

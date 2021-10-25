@@ -8,7 +8,7 @@ from sklearn import metrics
 import sys
 sys.path.insert(0, '..')
 from undersampling_algorithms import *
-import cobra.classifier_cobra
+import cobraclassifier.classifier_cobra
 
 
 def execute_model(X, y, num_splits, seed, model, with_undersampling = False, majority_class = 0, undersampling_method = knn_und):

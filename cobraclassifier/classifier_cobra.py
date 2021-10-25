@@ -1,5 +1,3 @@
-from sklearn.utils import shuffle
-
 from sklearn.linear_model import LogisticRegression, SGDClassifier, RidgeClassifier
 from sklearn import neighbors, tree, svm
 from sklearn.base import BaseEstimator
