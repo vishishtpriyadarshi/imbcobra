@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 
 from cobraclassifier import classifier_cobra, parent_model
-from cobraclassifier.undersampling_algorithms import *
+from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
 
 def prepare_data(seed, choice=1):

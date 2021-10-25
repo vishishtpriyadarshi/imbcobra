@@ -5,10 +5,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 from sklearn import metrics
 
-import sys
-sys.path.insert(0, '..')
-from undersampling_algorithms import *
 import cobraclassifier.classifier_cobra
+from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
 
 def execute_model(X, y, num_splits, seed, model, with_undersampling = False, majority_class = 0, undersampling_method = knn_und):

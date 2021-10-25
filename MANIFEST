@@ -3,4 +3,11 @@ setup.cfg
 setup.py
 cobraclassifier/__init__.py
 cobraclassifier/classifier_cobra.py
+cobraclassifier/condensed_knn.py
+cobraclassifier/edited_knn.py
+cobraclassifier/knn_und.py
+cobraclassifier/near_miss_v1.py
+cobraclassifier/near_miss_v2.py
+cobraclassifier/near_miss_v3.py
 cobraclassifier/parent_model.py
+cobraclassifier/tomek_link.py
