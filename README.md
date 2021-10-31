@@ -11,12 +11,13 @@ pip3 install cobraclassifier
 
 
 ## Testing:
-``` 
-git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
-cd MA691-COBRA-6
-pip3 install -r requirements.txt
-cd tests
-python3 execute.py 
+For testing the code locally, execute following steps:
+```bash
+home@:~$ git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
+home@:~$ cd MA691-COBRA-6
+home@:/MA691-COBRA-6$ pip3 install -r requirements.txt
+home@:/MA691-COBRA-6$ cd tests
+home@:/MA691-COBRA-6/tests$ python3 execute.py 
 ```
 
 ## Usage:
@@ -38,9 +39,11 @@ Following machines can be specified while initialising the model:
 ```python3
 from cobraclassifier import classifier_cobra as cobra
 from sklearn.datasets import make_classification
+
 X, y = make_classification(n_samples=1000, n_features=4,
 ...                        n_informative=2, n_redundant=0,
 ...                        random_state=0, shuffle=False)
+
 model = cobra.CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'])
 model.fit(X, y)
 model.predict(np.array([[0, 0, 0, 0]]))
@@ -48,18 +51,26 @@ model.predict(np.array([[0, 0, 0, 0]]))
 
 ### 2. Undersampling algorithms - 
 Following undersampling algorithms are available:
-1. Near Miss Algorithm - v1, 2 and 3
-2. Condensed KNN
-3. Edited KNN
-4. KNN Und
-5. Tomek Links
+
+| Option | Algorithm |
+| --- | ----------- |
+| ```near_miss_v1``` | Near Miss - 1|
+| ```near_miss_v2``` | Near Miss - 2 |
+| ```near_miss_v3``` | Near Miss - 3 |
+| ```condensed_knn``` | Condensed KNN |
+| ```edited_knn``` | Edited KNN |
+| ```knn_und``` | KNN Und |
+| ```tomek_link``` | Tomek Links  |
 
 ## Example:
 ```python3
 from cobraclassifier import edited_knn
 from sklearn.datasets import make_classification
-X, y = make_classification(n_samples=1000, n_features=4, n_informative=2, n_redundant=0, random_state=0, shuffle=False)
+
+X, y = make_classification(n_samples=1000, n_features=4, 
+n_informative=2, n_redundant=0, random_state=0, shuffle=False)
 majority_class_label = int(sum(y) > 0.5 * len(y))
+
 verdict = edited_knn.undersample(X, y, majority_class_label)
 X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```
