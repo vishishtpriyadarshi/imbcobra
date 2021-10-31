@@ -1,13 +1,13 @@
 # COBRA for Classification tasks on Imbalanced Data
 
-## Execution Steps:
-``` 
-git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
-cd MA691-COBRA-6
-pip3 install -r requirements.txt
-cd tests
-python3 execute.py 
+## Installation
+```python3
+pip3 install cobraclassifier
 ```
+
+## Dependencies:
+- Python 3.4+
+- numpy, scikit-learn, matplotlib, pandas
 
 ## Examples:
 ```python3
@@ -21,10 +21,14 @@ model.fit(X, y)
 model.predict(np.array([[0, 0, 0, 0]]))
 ```
 
-## Dependencies:
-- Python 3.4+
-- numpy, scikit-learn, matplotlib, pandas
-
+## Testing (Execution steps):
+``` 
+git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
+cd MA691-COBRA-6
+pip3 install -r requirements.txt
+cd tests
+python3 execute.py 
+```
 
 ## References:
 - G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.
