@@ -9,6 +9,18 @@ cd tests
 python3 execute.py 
 ```
 
+## Examples:
+```python3
+from cobraclassifier import classifier_cobra as cobra
+from sklearn.datasets import make_classification
+X, y = make_classification(n_samples=1000, n_features=4,
+...                        n_informative=2, n_redundant=0,
+...                        random_state=0, shuffle=False)
+model = cobra.CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'])
+model.fit(X, y)
+model.predict(np.array([[0, 0, 0, 0]]))
+```
+
 ## Dependencies:
 - Python 3.4+
 - numpy, scikit-learn, matplotlib, pandas
