@@ -67,8 +67,9 @@ Following undersampling algorithms are available:
 from cobraclassifier import edited_knn
 from sklearn.datasets import make_classification
 
-X, y = make_classification(n_samples=1000, n_features=4, 
-n_informative=2, n_redundant=0, random_state=0, shuffle=False)
+X, y = make_classification(n_samples=1000, n_features=4,
+...                        n_informative=2, n_redundant=0,
+...                        random_state=0, shuffle=False)
 majority_class_label = int(sum(y) > 0.5 * len(y))
 
 verdict = edited_knn.undersample(X, y, majority_class_label)
