@@ -21,7 +21,7 @@ model.fit(X, y)
 model.predict(np.array([[0, 0, 0, 0]]))
 ```
 
-## Testing (Execution steps):
+## Testing:
 ``` 
 git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
 cd MA691-COBRA-6
@@ -29,6 +29,31 @@ pip3 install -r requirements.txt
 cd tests
 python3 execute.py 
 ```
+
+## Usage:
+### 1. Cobra Classifier -
+Following machines can be specified while initialising the model:
+
+| Option | Classifier |
+| --- | ----------- |
+| ```knn``` | K Nearest Neighbors Classifier |
+| ```random_forest``` | Random Forest |
+| ```logistic_regression``` | Logistic Regression |
+| ```svm``` | Support Vector Machine |
+| ```decision_trees``` | Decision Trees |
+| ```naive_bayes``` | Gaussian Naive Bayes |
+| ```stochastic_gradient_descent``` | Stochastic Gradient Descent  |
+| ```ridge``` | Ridge Classifer |
+
+
+### 2. Undersampling algorithms - 
+Following undersampling algorithms are available:
+1. Near Miss Algorithm - v1, 2 and 3
+2. Condensed KNN
+3. Edited KNN
+4. KNN Und
+5. Tomek Links
+
 
 ## References:
 - G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.
