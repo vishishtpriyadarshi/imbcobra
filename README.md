@@ -12,7 +12,7 @@ pip3 install cobraclassifier
 
 ## Testing:
 For testing the code locally, execute following steps:
-```bash
+```console
 home@:~$ git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
 home@:~$ cd MA691-COBRA-6
 home@:/MA691-COBRA-6$ pip3 install -r requirements.txt
