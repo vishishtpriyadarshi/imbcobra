@@ -17,7 +17,7 @@ home@:~$ git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
 home@:~$ cd MA691-COBRA-6
 home@:/MA691-COBRA-6$ pip3 install -r requirements.txt
 home@:/MA691-COBRA-6$ cd tests
-home@:/MA691-COBRA-6/tests$ python3 execute.py 
+home@:/MA691-COBRA-6/tests$ python3 sample_test_1.py
 ```
 
 ## Usage:
