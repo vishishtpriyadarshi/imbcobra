@@ -18,7 +18,9 @@ class CobraClassifier:
         self.machines = machines
 
 
-    def fit(self, X, y, X_k=None, y_k=None, X_l=None, y_l=None, flag=False):
+    def fit(self, X, y, X_k=None, y_k=None, X_l=None, y_l=None, flag=False, sample_weight=None):
+        self.sample_weight = sample_weight
+
         # if flag == True => X_k values are defined
         self.X, self.y = X, y
         self.X_k, self.y_k = X_k, y_k
@@ -92,19 +94,19 @@ class CobraClassifier:
             if m == 'knn':
                 self.machine_estimators[m] = neighbors.KNeighborsClassifier().fit(self.X_k, self.y_k)
             elif m == 'random_forest':
-                self.machine_estimators[m] = RandomForestClassifier(random_state=self.seed).fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = RandomForestClassifier(random_state=self.seed).fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'logistic_regression':
-                self.machine_estimators[m] = LogisticRegression(random_state=self.seed).fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = LogisticRegression(random_state=self.seed).fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'svm':
-                self.machine_estimators[m] = svm.SVC().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = svm.SVC().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'decision_trees':
-                self.machine_estimators[m] = tree.DecisionTreeClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = tree.DecisionTreeClassifier().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'naive_bayes':
-                self.machine_estimators[m] = GaussianNB().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = GaussianNB().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'stochastic_gradient_decision':
-                self.machine_estimators[m] = SGDClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = SGDClassifier().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'ridge':
-                self.machine_estimators[m] = RidgeClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = RidgeClassifier().fit(self.X_k, self.y_k, self.sample_weight)
 
         return self
 
@@ -130,7 +132,10 @@ class CobraClassifier:
 
         self.X_k, self.y_k = self.X[ : k], self.y[ : k]
         self.X_l, self.y_l = self.X[k : ], self.y[k : ]
-        
+
+        if self.sample_weight is not None:
+            self.sample_weight = self.sample_weight[ : k]
+
         return self
 
 
