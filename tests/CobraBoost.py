@@ -21,10 +21,11 @@ class CobraBoost:
         
 
     def learn_parameters(self, iterations):
+        verdict = self.undersampling_method.undersample(self.X, self.y, self.majority_class_label)
+        X_undersampled, y_undersampled = self.X[verdict, :], self.y[verdict]
+            
         for t in range(iterations):
             print("[Testing]: Executing the iteration - {} of CobraBoost".format(t + 1))
-            verdict = self.undersampling_method.undersample(self.X, self.y, self.majority_class_label)
-            X_undersampled, y_undersampled = self.X[verdict, :], self.y[verdict]
             
             self.model.fit(X_undersampled, y_undersampled, sample_weight = self.weight[verdict])
         

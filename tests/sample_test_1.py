@@ -7,6 +7,8 @@ from sklearn import datasets
 from cobraclassifier import classifier_cobra, parent_model
 from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
+from models.logistic_regression import logistic_regression
+from models.adaboost import adaboost_classifier
 
 def prepare_data(seed, choice=1):
   if choice == 1:
@@ -248,18 +250,18 @@ def main():
   print("==================  Available Options for Undersampling algorithms:  ==================")
   # ========================================
 
-  num_splits, seed = 2, 32
+  num_splits, seed = 2, 22
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
-  models = [classifier_cobra.execute_cobra]
+  models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
 
   for m in models:
     print("\n\n#############################  MODEL -", m.__name__, "  #############################")
-    print("\n=======================  Executing without undersampling  =======================")
-    parent_model.execute_model(X, y, num_splits, seed, m)
+    # print("\n=======================  Executing without undersampling  =======================")
+    # parent_model.execute_model(X, y, num_splits, seed, m)
 
     print("\n\n=======================  Executing with undersampling  =======================")
-    parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
+    parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v3)
   
 
 if __name__ == "__main__":

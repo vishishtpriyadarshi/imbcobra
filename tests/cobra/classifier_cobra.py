@@ -143,7 +143,7 @@ def execute_cobra(X_train, y_train, X_test):
   print("[Executing]: Running Cobra Model ...\n")
 
   # Model Fitting
-  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge'])  
+  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'])  
   model.fit(X_train, y_train)
 
   # Predictions on test dataset
