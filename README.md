@@ -1,7 +1,8 @@
 # COBRA for Classification tasks on Imbalanced Data
 Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem. A new hybrid algorithm ``CobraBoost`` is implemented which combines COBRA with AdaBoost to efficiently deal with imbalanced data.
 
-## Installation
+
+## Installation:
 ```python3
 pip3 install cobraclassifier
 ```
@@ -84,7 +85,12 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │
 ├── cobraclassifier                  # PyPi package 
 │   └── ...
+│
 │   
+├── report
+│    └── Cobra-6 Project Report      # Project report for the complete analysis
+│
+│
 ├── tests
 │   ├── cobra
 │   │    ├── classifiercobra.py      # Definition of Classifier Cobra class
@@ -117,12 +123,12 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │   ├── sample_test_1.py             # Helper function to test the execution of COBRA and undersampling algorithms
 │   └── sample_test_2.py             # Helper function to test the execution of CobraBoost
 │
+│
 ├── utils
 │    ├── results                     # Results for the execution of COBRA and undersampling algorithms
-│    │   └── ...      
-│    ├── Cobra-6 Project Report      # Project report for the complete analysis
+│    │   └── ...          
 │    └── MA691_Project.ipynb         # Preliminary work in the form of ipynb notebook
-│
+│ 
 └── ...
 ```
 
