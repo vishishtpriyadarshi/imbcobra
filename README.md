@@ -135,3 +135,7 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ## References:
 - G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.
 - B. Guedj and B. Srinivasa Desikan (2018). Pycobra: A Python Toolbox for Ensemble Learning and Visualisation. Journal of Machine Learning Research, vol. 18 (190), 1--5.
+
+
+## Disclaimer:
+ This work is for learning purpose only.  The work cannot be used for publication or as commercial products etc without the mentor’s consent.
