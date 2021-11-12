@@ -82,7 +82,7 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```bash
 │
 ├── cobraclassifier                  # PyPi package 
-│
+│   └── ...
 │   
 ├── tests
 │   ├── cobra
@@ -116,9 +116,9 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │   ├── sample_test_1.py             # Helper function to test the execution of COBRA and undersampling algorithms
 │   └── sample_test_2.py             # Helper function to test the execution of CobraBoost
 │
-│
 ├── utils
 │    ├── results                     # Results for the execution of COBRA and undersampling algorithms
+│    │   └── ...      
 │    ├── Cobra-6 Project Report      # Project report for the complete analysis
 │    └── MA691_Project.ipynb         # Preliminary work in the form of ipynb notebook
 │
