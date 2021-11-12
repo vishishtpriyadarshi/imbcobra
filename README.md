@@ -76,6 +76,55 @@ verdict = edited_knn.undersample(X, y, majority_class_label)
 X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```
 
+
+## Directory Tree:
+
+```bash
+│
+├── cobraclassifier                  # PyPi package 
+│
+│   
+├── tests
+│   ├── cobra
+│   │    ├── classifiercobra.py      # Definition of Classifier Cobra class
+│   │    └── CobraBoost.py           # Definition of class for the Boosting algorithm based on COBRA and AdaBoost
+│   │
+│   ├── datasets                     # Dataset for the classification tasks available at https://archive.ics.uci.edu/ml/index.php
+│   │    ├── abalone.data
+│   │    ├── allbp.data
+│   │    ├── car.data
+│   │    ├── ecoli.csv
+│   │    ├── nursery.data
+│   │    ├── winequality-red.csv
+│   │    └── winequality-white.csv
+│   │
+│   ├── models
+│   │   ├── adaboost.py              # Implementation of AdaBoost algorithm from scratch
+│   │   ├── logistic_regression.py   # Logistic Regression helper function to train models and get predictions easily
+│   │   └── parent_model.py          # Parent function to execute different models and handle pre-processing tasks
+│   │
+│   ├── undersampling_algorithms     # Implementation of Undersampling Algorithms
+│   │   ├── __init__.py
+│   │   ├── condensed_knn.py
+│   │   ├── edited_knn.py
+│   │   ├── knn_und.py
+│   │   ├── near_miss_v1.py
+│   │   ├── near_miss_v2.py
+│   │   ├── near_miss_v3.py
+│   │   └── tomek_link.py
+│   │
+│   ├── sample_test_1.py             # Helper function to test the execution of COBRA and undersampling algorithms
+│   └── sample_test_2.py             # Helper function to test the execution of CobraBoost
+│
+│
+├── utils
+│    ├── results                     # Results for the execution of COBRA and undersampling algorithms
+│    ├── Cobra-6 Project Report      # Project report for the complete analysis
+│    └── MA691_Project.ipynb         # Preliminary work in the form of ipynb notebook
+│
+└── ...
+```
+
 ## References:
 - G. Biau, A. Fischer, B. Guedj and J. D. Malley (2016), COBRA: A combined regression strategy, Journal of Multivariate Analysis.
 - B. Guedj and B. Srinivasa Desikan (2018). Pycobra: A Python Toolbox for Ensemble Learning and Visualisation. Journal of Machine Learning Research, vol. 18 (190), 1--5.
