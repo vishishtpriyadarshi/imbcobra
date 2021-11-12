@@ -77,7 +77,7 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```
 
 
-## Directory Tree:
+## Folder Structure:
 
 ```bash
 │
