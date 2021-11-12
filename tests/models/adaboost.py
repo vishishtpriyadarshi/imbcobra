@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.linear_model import LogisticRegression
 
 
 # Decision stump used as weak classifier
@@ -94,9 +95,9 @@ def adaboost_classifier(X_train, y_train, X_test):
 
   # Model Fitting
   # model = Adaboost()
-  model = AdaBoostClassifier()
+  model = AdaBoostClassifier(LogisticRegression())
   model.fit(X_train, y_train)
-
+  
   # Predictions on test dataset
   y_pred = model.predict(X_test)
 

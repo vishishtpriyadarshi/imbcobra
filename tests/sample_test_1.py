@@ -250,15 +250,18 @@ def main():
   print("==================  Available Options for Undersampling algorithms:  ==================")
   # ========================================
 
-  num_splits, seed = 2, 22
+  num_splits, seed = 2, 32
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
-  models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
+  # models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
+  # models = [adaboost_classifier]
+  models = [adaboost_classifier]
+  # models = [logistic_regression]
 
   for m in models:
     print("\n\n#############################  MODEL -", m.__name__, "  #############################")
-    # print("\n=======================  Executing without undersampling  =======================")
-    # parent_model.execute_model(X, y, num_splits, seed, m)
+    print("\n=======================  Executing without undersampling  =======================")
+    parent_model.execute_model(X, y, num_splits, seed, m)
 
     print("\n\n=======================  Executing with undersampling  =======================")
     parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v3)
