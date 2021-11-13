@@ -137,5 +137,13 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 - B. Guedj and B. Srinivasa Desikan (2018). Pycobra: A Python Toolbox for Ensemble Learning and Visualisation. Journal of Machine Learning Research, vol. 18 (190), 1--5.
 
 
+## Contributors
+1. Dr. Arabin Dey (Mentor)
+2. Aadi Gupta
+3. Tejus Singla
+4. Shashank Goyal
+5. Vishisht Priyadarshi
+
+
 ## Disclaimer:
  This work is for learning purpose only.  The work cannot be used for publication or as commercial products etc without the mentor’s consent.
