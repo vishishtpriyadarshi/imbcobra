@@ -93,17 +93,17 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │
 ├── tests
 │   ├── cobra
-│   │    ├── classifiercobra.py      # Definition of Classifier Cobra class
-│   │    └── CobraBoost.py           # Definition of class for the Boosting algorithm based on COBRA and AdaBoost
+│   │   ├── classifiercobra.py       # Definition of Classifier Cobra class
+│   │   └── CobraBoost.py            # Definition of class for the Boosting algorithm based on COBRA and AdaBoost
 │   │
 │   ├── datasets                     # Dataset for the classification tasks available at https://archive.ics.uci.edu/ml/index.php
-│   │    ├── abalone.data
-│   │    ├── allbp.data
-│   │    ├── car.data
-│   │    ├── ecoli.csv
-│   │    ├── nursery.data
-│   │    ├── winequality-red.csv
-│   │    └── winequality-white.csv
+│   │   ├── abalone.data
+│   │   ├── allbp.data
+│   │   ├── car.data
+│   │   ├── ecoli.csv
+│   │   ├── nursery.data
+│   │   ├── winequality-red.csv
+│   │   └── winequality-white.csv
 │   │
 │   ├── models
 │   │   ├── adaboost.py              # Implementation of AdaBoost algorithm from scratch
@@ -125,9 +125,9 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │
 │
 ├── utils
-│    ├── results                     # Results for the execution of COBRA and undersampling algorithms
-│    │   └── ...          
-│    └── MA691_Project.ipynb         # Preliminary work in the form of ipynb notebook
+│   ├── results                      # Results for the execution of COBRA and undersampling algorithms
+│   │   └── ...          
+│   └── MA691_Project.ipynb          # Preliminary work in the form of ipynb notebook
 │ 
 └── ...
 ```
