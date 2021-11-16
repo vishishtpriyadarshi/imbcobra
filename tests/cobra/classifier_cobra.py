@@ -124,11 +124,15 @@ class CobraClassifier:
         """ 
         Splits the data into training (D_k) and testing part (D_l) for execution of models as specified in the COBRA paper
         """
+        
+        # shuffle the data
+        indexes = range(len(self.X))
+        self.X, self.y, indexes = shuffle(self.X, self.y, indexes, random_state = self.seed)
 
         if k is None or l is None:
             n = len(self.X)
-            k = int(3*n/4)
-            l = int(n/4)
+            k = int(n/2)
+            l = int(n/2)
 
         self.X_k, self.y_k = self.X[ : k], self.y[ : k]
         self.X_l, self.y_l = self.X[k : ], self.y[k : ]
@@ -143,7 +147,7 @@ def execute_cobra(X_train, y_train, X_test):
   print("[Executing]: Running Cobra Model ...\n")
 
   # Model Fitting
-  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'])  
+  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest', 'decision_trees']) 
   model.fit(X_train, y_train)
 
   # Predictions on test dataset

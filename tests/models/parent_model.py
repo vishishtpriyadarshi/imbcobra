@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 from sklearn import metrics
+from imblearn.under_sampling import NearMiss
 
 import sys
 sys.path.insert(0, '..')
@@ -31,12 +32,12 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
       print("[Testing]: Count of test data before Undersampling = ", X_train.shape[0])
       verdict = undersampling_method.undersample(X_train, y_train, majority_class)
 
-      X_train = X_train[verdict, :]
-      y_train = y_train[verdict]
+      # X_train = X_train[verdict, :]
+      # y_train = y_train[verdict]
 
       # In-buit near miss algorithm
-      # nr = NearMiss()
-      # X_train, y_train = nr.fit_sample(X_train, y_train)
+      nr = NearMiss()
+      X_train, y_train = nr.fit_resample(X_train, y_train)
 
       # Note: Be careful while plotting, make sure same features are being compared
       # plt.scatter(X_train[:, 0], X_train[:, 1], marker = '.', c = y_train)
@@ -57,6 +58,7 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
     class0_metrics_list.append([class0_report['precision'], class0_report['recall'], class0_report['f1-score']])
     class1_metrics_list.append([class1_report['precision'], class1_report['recall'], class1_report['f1-score']])
 
+    # print(metrics.confusion_matrix(y_test, y_pred))
     iterations += 1
   
   metrics_list = np.mean(metrics_list, axis = 0)
@@ -64,20 +66,10 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
   class1_metrics_list = np.mean(class1_metrics_list, axis = 0)
   
 
-  print("Majority Class = Class ", majority_class, "\n\n")
+  print("Majority Class = Class ", majority_class, "\n")
   print("\n---------------  Cross-validated Evaluation Metrics  ---------------\n")
   print("Accuracy \t= \t", metrics_list[0])
   print("Precision \t= \t", metrics_list[1])
   print("Recall \t\t= \t", metrics_list[2])
+  print("Negative Recall = \t", class1_metrics_list[2])
   print("F1 score \t= \t", 2 * metrics_list[1] * metrics_list[2] / (metrics_list[1] + metrics_list[2]))
-
-  print("\n---------------  Class-wise Evaluation Metrics - Class 0 ---------------\n")
-  print("Precision \t= \t", class0_metrics_list[1])
-  print("Recall \t\t= \t", class0_metrics_list[2])
-  print("F1 score \t= \t", 2 * class0_metrics_list[1] * class0_metrics_list[2] / (class0_metrics_list[1] + class0_metrics_list[2]))
-
-  print("\n---------------  Class-wise Evaluation Metrics - Class 1 ---------------\n")
-  print("Precision \t= \t", class1_metrics_list[1])
-  print("Recall \t\t= \t", class1_metrics_list[2])
-  print("F1 score \t= \t", 2 * class1_metrics_list[1] * class1_metrics_list[2] / (class1_metrics_list[1] + class1_metrics_list[2]))
-

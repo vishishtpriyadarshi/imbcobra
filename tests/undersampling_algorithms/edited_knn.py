@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 
-def undersample(X, y, majority_class, k = 5, knn_algorithm = 'auto', knn_metric = 'euclidean'):
+def undersample(X, y, majority_class, k = 10, knn_algorithm = 'auto', knn_metric = 'euclidean'):
   n, _ = X.shape
   verdict = np.ones(n, dtype=bool)
 
@@ -17,14 +17,14 @@ def undersample(X, y, majority_class, k = 5, knn_algorithm = 'auto', knn_metric 
       for j in nearest_neighbors_idx[i]:
         tmp += y[j]
       tmp/=3
-      if(tmp<0.6):
+      if(tmp<0.3):
         verdict[i] = False
     else:
       tmp = 0
       for j in nearest_neighbors_idx[i]:
         tmp += y[j]
       tmp/=3
-      if(tmp>0.6):    
+      if(tmp>0.3):    
         for j in nearest_neighbors_idx[i]:
           if(y[j] == majority_class):
             verdict[j] == False

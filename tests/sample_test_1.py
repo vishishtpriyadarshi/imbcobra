@@ -4,12 +4,17 @@ import matplotlib.pyplot as plt
 
 from sklearn import datasets
 
-from cobraclassifier import classifier_cobra
-from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
+# from cobraclassifier import classifier_cobra
+# from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
 from models.logistic_regression import logistic_regression
 from models.adaboost import adaboost_classifier
 from models.parent_model import execute_model
+from undersampling_algorithms import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
+from cobra import classifier_cobra
+
+import warnings
+warnings.filterwarnings("ignore")
 
 def prepare_data(seed, choice=1):
   if choice == 1:
@@ -241,34 +246,36 @@ def main():
   print("\nRandomly generated dataset\t-\t1")
   print("Red Wine Quality\t\t-\t2")
   print("White Wine Quality\t\t-\t3")
-  print("Car Evaluationr\t\t\t-\t4")
+  print("Car Evaluation\t\t\t-\t4")
   print("Ecoli\t\t\t\t-\t5")
   print("Abalone\t\t\t\t-\t6")
   print("Nursery\t\t\t\t-\t7\n\n")
   ch = int(input("Enter your choice (between 1 to 7): "))
-  
-
-  print("==================  Available Options for Undersampling algorithms:  ==================")
   # ========================================
 
-  num_splits, seed = 2, 32
+  num_splits, seed = 2, 14
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
-  models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
-  # models = [adaboost_classifier]
-  # models = [adaboost_classifier]
+  # models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
+  # models = [classifier_cobra.execute_cobra]
+  models = [logistic_regression, adaboost_classifier]
   # models = [logistic_regression]
 
   for m in models:
     print("\n\n#############################  MODEL -", m.__name__, "  #############################")
     print("\n=======================  Executing without undersampling  =======================")
     # parent_model.execute_model(X, y, num_splits, seed, m)
-    # execute_model(X, y, num_splits, seed, m)
+    execute_model(X, y, num_splits, seed, m)
 
     print("\n\n=======================  Executing with undersampling  =======================")
     # parent_model.execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v3)
+    # execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v1)
+    # execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v2)
     execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = near_miss_v3)
+    # execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = condensed_knn)
+    # execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = knn_und)
+    # execute_model(X, y, num_splits, seed, m, with_undersampling = True, majority_class = majority_class_label, undersampling_method = edited_knn)
   
 
 if __name__ == "__main__":
-    main()
+  main()

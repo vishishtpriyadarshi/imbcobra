@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 
 from sklearn import datasets
 
-from cobraclassifier import classifier_cobra, parent_model
-from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
+# from cobraclassifier import classifier_cobra, parent_model
+# from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
 import numpy as np
 
@@ -15,7 +15,11 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn import metrics
 
 from CobraBoost import CobraBoost
+from undersampling_algorithms import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
+from cobra import classifier_cobra
 
+import warnings
+warnings.filterwarnings("ignore")
 
 def prepare_data(seed, choice=1):
   if choice == 1:
@@ -280,17 +284,8 @@ def execute_cobraboost(X, y, num_splits, seed, machines, undersampling_method = 
   print("Accuracy \t= \t", metrics_list[0])
   print("Precision \t= \t", metrics_list[1])
   print("Recall \t\t= \t", metrics_list[2])
+  print("Negative Recall = \t", class1_metrics_list[2])
   print("F1 score \t= \t", 2 * metrics_list[1] * metrics_list[2] / (metrics_list[1] + metrics_list[2]))
-
-  print("\n---------------  Class-wise Evaluation Metrics - Class 0 ---------------\n")
-  print("Precision \t= \t", class0_metrics_list[1])
-  print("Recall \t\t= \t", class0_metrics_list[2])
-  print("F1 score \t= \t", 2 * class0_metrics_list[1] * class0_metrics_list[2] / (class0_metrics_list[1] + class0_metrics_list[2]))
-
-  print("\n---------------  Class-wise Evaluation Metrics - Class 1 ---------------\n")
-  print("Precision \t= \t", class1_metrics_list[1])
-  print("Recall \t\t= \t", class1_metrics_list[2])
-  print("F1 score \t= \t", 2 * class1_metrics_list[1] * class1_metrics_list[2] / (class1_metrics_list[1] + class1_metrics_list[2]))
 
 
 def main():
@@ -300,16 +295,16 @@ def main():
     print("\nRandomly generated dataset\t-\t1")
     print("Red Wine Quality\t\t-\t2")
     print("White Wine Quality\t\t-\t3")
-    print("Car Evaluationr\t\t\t-\t4")
+    print("Car Evaluation\t\t\t-\t4")
     print("Ecoli\t\t\t\t-\t5")
     print("Abalone\t\t\t\t-\t6")
     print("Nursery\t\t\t\t-\t7\n\n")
     ch = int(input("Enter your choice (between 1 to 7): "))
     # ========================================
 
-    num_splits, seed = 2, 22
+    num_splits, seed = 2, 32
     X, y, _ = prepare_data(seed, choice=ch)
-    machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest']
+    machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest', 'decision_trees']
     execute_cobraboost(X, y, num_splits, seed, machines, undersampling_method = near_miss_v3, boosting_iterations = 4)
 
 
