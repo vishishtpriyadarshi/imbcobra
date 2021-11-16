@@ -242,7 +242,7 @@ def prepare_data(seed, choice=1):
 
 def execute_cobraboost(X, y, num_splits, seed, machines, undersampling_method = knn_und, boosting_iterations = 4):
   K_folds = StratifiedKFold(n_splits = num_splits, shuffle = True, random_state = seed)
-  metrics_list = []
+  metrics_list, class0_metrics_list, class1_metrics_list = [], [], []
   
   # Feature Scaling
   sc = StandardScaler()
@@ -265,15 +265,32 @@ def execute_cobraboost(X, y, num_splits, seed, machines, undersampling_method = 
     precision, recall, F1_score, _ = metrics.precision_recall_fscore_support(y_test, y_pred, beta = 1.0, average = 'macro')
     metrics_list.append([accuracy, precision, recall, F1_score])
 
+    classification_report = metrics.classification_report(y_test, y_pred, target_names = ['class 0', 'class 1'], output_dict = True)
+    class0_report, class1_report = classification_report['class 0'], classification_report['class 1']
+    class0_metrics_list.append([class0_report['precision'], class0_report['recall'], class0_report['f1-score']])
+    class1_metrics_list.append([class1_report['precision'], class1_report['recall'], class1_report['f1-score']])
+
     iterations += 1
   
   metrics_list = np.mean(metrics_list, axis = 0)
+  class0_metrics_list = np.mean(class0_metrics_list, axis = 0)
+  class1_metrics_list = np.mean(class1_metrics_list, axis = 0)
 
   print("\n---------------  Cross-validated Evaluation Metrics  ---------------\n")
   print("Accuracy \t= \t", metrics_list[0])
   print("Precision \t= \t", metrics_list[1])
   print("Recall \t\t= \t", metrics_list[2])
   print("F1 score \t= \t", 2 * metrics_list[1] * metrics_list[2] / (metrics_list[1] + metrics_list[2]))
+
+  print("\n---------------  Class-wise Evaluation Metrics - Class 0 ---------------\n")
+  print("Precision \t= \t", class0_metrics_list[1])
+  print("Recall \t\t= \t", class0_metrics_list[2])
+  print("F1 score \t= \t", 2 * class0_metrics_list[1] * class0_metrics_list[2] / (class0_metrics_list[1] + class0_metrics_list[2]))
+
+  print("\n---------------  Class-wise Evaluation Metrics - Class 1 ---------------\n")
+  print("Precision \t= \t", class1_metrics_list[1])
+  print("Recall \t\t= \t", class1_metrics_list[2])
+  print("F1 score \t= \t", 2 * class1_metrics_list[1] * class1_metrics_list[2] / (class1_metrics_list[1] + class1_metrics_list[2]))
 
 
 def main():
