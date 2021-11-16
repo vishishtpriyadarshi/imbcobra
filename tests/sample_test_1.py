@@ -253,12 +253,12 @@ def main():
   ch = int(input("Enter your choice (between 1 to 7): "))
   # ========================================
 
-  num_splits, seed = 2, 14
+  num_splits, seed = 2, 32
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
   # models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
-  # models = [classifier_cobra.execute_cobra]
-  models = [logistic_regression, adaboost_classifier]
+  models = [classifier_cobra.execute_cobra]
+  # models = [logistic_regression, adaboost_classifier]
   # models = [logistic_regression]
 
   for m in models:
