@@ -304,7 +304,7 @@ def main():
 
     num_splits, seed = 2, 32
     X, y, _ = prepare_data(seed, choice=ch)
-    machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest', 'decision_trees']
+    machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest']
     execute_cobraboost(X, y, num_splits, seed, machines, undersampling_method = near_miss_v3, boosting_iterations = 4)
 
 

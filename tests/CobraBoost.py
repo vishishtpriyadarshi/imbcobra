@@ -5,6 +5,8 @@ import random
 
 from cobra.classifier_cobra import CobraClassifier as cobra
 from cobraclassifier import edited_knn, near_miss_v1, near_miss_v2, near_miss_v3, tomek_link, condensed_knn, knn_und
+from imblearn.under_sampling import NearMiss
+
 
 class CobraBoost:
     def __init__(self, X, y, machines, undersampling_method):
@@ -23,6 +25,9 @@ class CobraBoost:
     def learn_parameters(self, iterations):
         verdict = self.undersampling_method.undersample(self.X, self.y, self.majority_class_label)
         X_undersampled, y_undersampled = self.X[verdict, :], self.y[verdict]
+
+        # undersampler = NearMiss()
+        # X_undersampled, y_undersampled = undersampler.fit_resample(self.X, self.y)
             
         for t in range(iterations):
             print("[Testing]: Executing the iteration - {} of CobraBoost".format(t + 1))
