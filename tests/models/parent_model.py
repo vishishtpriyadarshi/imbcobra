@@ -32,12 +32,12 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
       print("[Testing]: Count of test data before Undersampling = ", X_train.shape[0])
       verdict = undersampling_method.undersample(X_train, y_train, majority_class)
 
-      # X_train = X_train[verdict, :]
-      # y_train = y_train[verdict]
+      X_train = X_train[verdict, :]
+      y_train = y_train[verdict]
 
       # In-buit near miss algorithm
-      nr = NearMiss()
-      X_train, y_train = nr.fit_resample(X_train, y_train)
+      # nr = NearMiss()
+      # X_train, y_train = nr.fit_resample(X_train, y_train)
 
       # Note: Be careful while plotting, make sure same features are being compared
       # plt.scatter(X_train[:, 0], X_train[:, 1], marker = '.', c = y_train)
@@ -66,7 +66,7 @@ def execute_model(X, y, num_splits, seed, model, with_undersampling = False, maj
   class1_metrics_list = np.mean(class1_metrics_list, axis = 0)
   
 
-  print("Majority Class = Class ", majority_class, "\n")
+  print("\nMajority Class = Class ", majority_class)
   print("\n---------------  Cross-validated Evaluation Metrics  ---------------\n")
   print("Accuracy \t= \t", metrics_list[0])
   print("Precision \t= \t", metrics_list[1])

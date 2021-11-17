@@ -7,7 +7,8 @@ from sklearn import datasets
 # from cobraclassifier import classifier_cobra
 # from cobraclassifier import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
 
-from models.logistic_regression import logistic_regression
+from models.logistic_regression import logistic_regression, logistic_regression_adam
+from models.ridge_classification import ridge_classification
 from models.adaboost import adaboost_classifier
 from models.parent_model import execute_model
 from undersampling_algorithms import near_miss_v1, near_miss_v2, near_miss_v3, knn_und, edited_knn, condensed_knn, tomek_link
@@ -257,9 +258,11 @@ def main():
   X, y, majority_class_label = prepare_data(seed, choice=ch)
   
   # models = [logistic_regression, adaboost_classifier, classifier_cobra.execute_cobra]
-  models = [classifier_cobra.execute_cobra]
+  # models = [classifier_cobra.execute_cobra]
   # models = [logistic_regression, adaboost_classifier]
   # models = [logistic_regression]
+  # models = [logistic_regression_adam]
+  models = [ridge_classification]
 
   for m in models:
     print("\n\n#############################  MODEL -", m.__name__, "  #############################")
