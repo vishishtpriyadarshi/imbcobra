@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 
-def undersample(X, y, majority_class, ratio = 3.5, knn_algorithm = 'auto', knn_metric = 'euclidean'):
+def undersample(X, y, majority_class, ratio = 7.5, knn_algorithm = 'auto', knn_metric = 'euclidean'):
   n, _ = X.shape
   verdict = np.ones(n, dtype=bool)
 
