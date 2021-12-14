@@ -2,14 +2,6 @@
 Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem. A new hybrid algorithm ``CobraBoost`` is implemented which combines COBRA with AdaBoost to efficiently deal with imbalanced data.
 
 
-## Contributors:
-1. Dr Arabin Kumar Dey (**Mentor**)
-2. Aadi Gupta
-3. Tejus Singla
-4. Shashank Goyal
-5. Vishisht Priyadarshi
-
- 
 ## Installation:
 ```python3
 pip3 install cobraclassifier
