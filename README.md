@@ -1,5 +1,6 @@
 # COBRA for Classification tasks on Imbalanced Data
-Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem. A new hybrid algorithm ``CobraBoost`` is implemented which combines COBRA with AdaBoost to efficiently deal with imbalanced data.
+Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem as project (group Cobra-6) for the course MA691: Advanced Statistical Algorithms, taken in Monsoon Semester 2021 at IIT Guwahati.   
+A new hybrid algorithm ``CobraBoost`` is implemented which combines COBRA with AdaBoost to efficiently deal with imbalanced data.
 
 
 ## Installation:
@@ -15,11 +16,11 @@ pip3 install imbcobra
 ## Testing:
 For testing the code locally, execute following steps:
 ```console
-home@:~$ git clone https://github.com/vishishtpriyadarshi/MA691-COBRA-6
-home@:~$ cd MA691-COBRA-6
-home@:/MA691-COBRA-6$ pip3 install -r requirements.txt
-home@:/MA691-COBRA-6$ cd tests
-home@:/MA691-COBRA-6/tests$ python3 sample_test_1.py
+home@:~$ git clone https://github.com/vishishtpriyadarshi/imbcobra
+home@:~$ cd imbcobra
+home@:/imbcobra$ pip3 install -r requirements.txt
+home@:/imbcobra$ cd tests
+home@:/imbcobra/tests$ python3 sample_test_1.py
 ```
 
 ## Usage:
@@ -39,6 +40,7 @@ Following machines can be specified while initialising the model:
 
 ## Example:
 ```python3
+import numpy as np
 from imbcobra import classifier_cobra as cobra
 from sklearn.datasets import make_classification
 
@@ -60,7 +62,6 @@ from imbcobra import cobra_boost as cobra
 from imbcobra import edited_knn
 from sklearn.datasets import make_classification
 
-
 X, y = make_classification(n_samples=1000, n_features=4,
                             n_informative=2, n_redundant=0,
                             random_state=0, shuffle=False)
@@ -70,7 +71,7 @@ model = cobra.CobraBoost(X, y,
                         undersampling_method=edited_knn)
 
 model.learn_parameters(iterations=5)
-print(model.predict(np.array([[0, 0, 0, 0]])))
+model.predict(np.array([[0, 0, 0, 0]]))
 ```
 
 ### 3. Undersampling algorithms - 
@@ -92,10 +93,10 @@ from imbcobra import edited_knn
 from sklearn.datasets import make_classification
 
 X, y = make_classification(n_samples=1000, n_features=4,
-...                        n_informative=2, n_redundant=0,
-...                        random_state=0, shuffle=False)
+                           n_informative=2, n_redundant=0,
+                           random_state=0, shuffle=False)
+                           
 majority_class_label = int(sum(y) > 0.5 * len(y))
-
 verdict = edited_knn.undersample(X, y, majority_class_label)
 X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```
