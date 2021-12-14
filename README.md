@@ -53,7 +53,7 @@ model.predict(np.array([[0, 0, 0, 0]]))
 
 ### 2. CobraBoost -
 
-### Example:
+## Example:
 ```python3
 import numpy as np
 from imbcobra import cobra_boost as cobra
