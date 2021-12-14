@@ -4,7 +4,7 @@ from itertools import compress
 import random
 
 from cobra.classifier_cobra import CobraClassifier as cobra
-from cobraclassifier import edited_knn, near_miss_v1, near_miss_v2, near_miss_v3, tomek_link, condensed_knn, knn_und
+from imbcobra import edited_knn, near_miss_v1, near_miss_v2, near_miss_v3, tomek_link, condensed_knn, knn_und
 from imblearn.under_sampling import NearMiss
 
 

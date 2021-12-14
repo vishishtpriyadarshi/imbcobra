@@ -2,8 +2,10 @@ import numpy as np
 from math import log
 from itertools import compress
 
-from cobraclassifier import classifier_cobra as cobra
-from cobraclassifier import edited_knn, near_miss_v1, near_miss_v2, near_miss_v3, tomek_link, condensed_knn, knn_und
+from imbcobra import classifier_cobra as cobra
+from imbcobra import edited_knn, near_miss_v1, near_miss_v2, near_miss_v3, tomek_link, condensed_knn, knn_und
+
+import logging
 
 
 class CobraBoost:
@@ -11,7 +13,7 @@ class CobraBoost:
         self.X = X
         self.y = y
 
-        self.model = cobra(machines = machines)
+        self.model = cobra.CobraClassifier(machines = machines)
         self.majority_class_label = int(sum(y) > 0.5 * len(y))
         self.undersampling_method = undersampling_method
 
@@ -25,7 +27,7 @@ class CobraBoost:
         X_undersampled, y_undersampled = self.X[verdict, :], self.y[verdict]
     
         for t in range(iterations):
-            print("[Testing]: Executing the iteration - {} of CobraBoost".format(t + 1))
+            print("[Info]: Executing the iteration - {} of CobraBoost".format(t + 1))
             
             self.model.fit(X_undersampled, y_undersampled, sample_weight = self.weight[verdict])
         

@@ -4,7 +4,7 @@ Implementation of the COBRA model and various undersampling algorithms to handle
 
 ## Installation:
 ```python3
-pip3 install cobraclassifier
+pip3 install imbcobra
 ```
 
 ## Dependencies:
@@ -39,19 +39,41 @@ Following machines can be specified while initialising the model:
 
 ## Example:
 ```python3
-from cobraclassifier import classifier_cobra as cobra
+from imbcobra import classifier_cobra as cobra
 from sklearn.datasets import make_classification
 
 X, y = make_classification(n_samples=1000, n_features=4,
-...                        n_informative=2, n_redundant=0,
-...                        random_state=0, shuffle=False)
+                           n_informative=2, n_redundant=0,
+                           random_state=0, shuffle=False)
 
 model = cobra.CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'])
 model.fit(X, y)
 model.predict(np.array([[0, 0, 0, 0]]))
 ```
 
-### 2. Undersampling algorithms - 
+### 2. CobraBoost -
+
+### Example:
+```python3
+import numpy as np
+from imbcobra import cobra_boost as cobra
+from imbcobra import edited_knn
+from sklearn.datasets import make_classification
+
+
+X, y = make_classification(n_samples=1000, n_features=4,
+                            n_informative=2, n_redundant=0,
+                            random_state=0, shuffle=False)
+
+model = cobra.CobraBoost(X, y,
+                        machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest'],
+                        undersampling_method=edited_knn)
+
+model.learn_parameters(iterations=5)
+print(model.predict(np.array([[0, 0, 0, 0]])))
+```
+
+### 3. Undersampling algorithms - 
 Following undersampling algorithms are available:
 
 | Option | Algorithm |
@@ -66,7 +88,7 @@ Following undersampling algorithms are available:
 
 ## Example:
 ```python3
-from cobraclassifier import edited_knn
+from imbcobra import edited_knn
 from sklearn.datasets import make_classification
 
 X, y = make_classification(n_samples=1000, n_features=4,
@@ -83,12 +105,12 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 
 ```bash
 │
-├── cobraclassifier                  # PyPi package 
+├── imbcobra                         # PyPi package 
 │   └── ...
 │
-│   
+│
 ├── report
-│    └── Cobra-6 Project Report      # Project report for the complete analysis
+│   └── Cobra-6 Project Report       # Project report for the complete analysis
 │
 │
 ├── tests
@@ -120,8 +142,9 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │   │   ├── near_miss_v3.py
 │   │   └── tomek_link.py
 │   │
-│   ├── sample_test_1.py             # Helper function to test the execution of COBRA and undersampling algorithms
-│   └── sample_test_2.py             # Helper function to test the execution of CobraBoost
+│   ├── sample_test_1.py             # Test the execution of COBRA and undersampling algorithms
+│   ├── sample_test_2.py             # Test the execution of CobraBoost
+│   └── sample_test_3.py             # Test the package
 │
 │
 ├── utils

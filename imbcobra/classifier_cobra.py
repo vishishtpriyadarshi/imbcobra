@@ -1,3 +1,5 @@
+from sklearn.utils import shuffle
+
 from sklearn.linear_model import LogisticRegression, SGDClassifier, RidgeClassifier
 from sklearn import neighbors, tree, svm
 from sklearn.base import BaseEstimator
@@ -6,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 import numpy as np
 import math
+import logging
 
 
 class CobraClassifier:
@@ -16,7 +19,9 @@ class CobraClassifier:
         self.machines = machines
 
 
-    def fit(self, X, y, X_k=None, y_k=None, X_l=None, y_l=None, flag=False):
+    def fit(self, X, y, X_k=None, y_k=None, X_l=None, y_l=None, flag=False, sample_weight=None):
+        self.sample_weight = sample_weight
+
         # if flag == True => X_k values are defined
         self.X, self.y = X, y
         self.X_k, self.y_k = X_k, y_k
@@ -90,19 +95,19 @@ class CobraClassifier:
             if m == 'knn':
                 self.machine_estimators[m] = neighbors.KNeighborsClassifier().fit(self.X_k, self.y_k)
             elif m == 'random_forest':
-                self.machine_estimators[m] = RandomForestClassifier(random_state=self.seed).fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = RandomForestClassifier(random_state=self.seed).fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'logistic_regression':
-                self.machine_estimators[m] = LogisticRegression(random_state=self.seed).fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = LogisticRegression(random_state=self.seed).fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'svm':
-                self.machine_estimators[m] = svm.SVC().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = svm.SVC().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'decision_trees':
-                self.machine_estimators[m] = tree.DecisionTreeClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = tree.DecisionTreeClassifier().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'naive_bayes':
-                self.machine_estimators[m] = GaussianNB().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = GaussianNB().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'stochastic_gradient_decision':
-                self.machine_estimators[m] = SGDClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = SGDClassifier().fit(self.X_k, self.y_k, self.sample_weight)
             elif m == 'ridge':
-                self.machine_estimators[m] = RidgeClassifier().fit(self.X_k, self.y_k)
+                self.machine_estimators[m] = RidgeClassifier().fit(self.X_k, self.y_k, self.sample_weight)
 
         return self
 
@@ -120,15 +125,22 @@ class CobraClassifier:
         """ 
         Splits the data into training (D_k) and testing part (D_l) for execution of models as specified in the COBRA paper
         """
+        
+        # shuffle the data
+        indexes = range(len(self.X))
+        self.X, self.y, indexes = shuffle(self.X, self.y, indexes, random_state = self.seed)
 
         if k is None or l is None:
             n = len(self.X)
-            k = int(3*n/4)
-            l = int(n/4)
+            k = int(n/2)
+            l = int(n/2)
 
         self.X_k, self.y_k = self.X[ : k], self.y[ : k]
         self.X_l, self.y_l = self.X[k : ], self.y[k : ]
-        
+
+        if self.sample_weight is not None:
+            self.sample_weight = self.sample_weight[ : k]
+
         return self
 
 
@@ -136,7 +148,7 @@ def execute_cobra(X_train, y_train, X_test):
   print("[Executing]: Running Cobra Model ...\n")
 
   # Model Fitting
-  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge'])  
+  model = CobraClassifier(machines = ['knn', 'logistic_regression', 'svm', 'naive_bayes', 'ridge', 'random_forest', 'decision_trees']) 
   model.fit(X_train, y_train)
 
   # Predictions on test dataset
