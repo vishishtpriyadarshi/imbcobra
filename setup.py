@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
   name = 'cobraclassifier',
   packages = ['cobraclassifier'],
-  version = '1.3',
-  license='MIT', 
+  version = '1.4',
+  license = 'MIT', 
   description = 'COBRA for classification tasks (on Imbalanced Data)',
   author = ['Dr. Arabin Kumar Dey', 'Vishisht Priyadarshi', 'Aadi Gupta', 'Tejus Singla', 'Shashank Goyal'],
   author_email = 'vishishtpriyadarshi867@gmail.com',
   url = 'https://github.com/vishishtpriyadarshi/MA691-COBRA-6',
-  download_url = 'https://github.com/vishishtpriyadarshi/MA691-COBRA-6/archive/refs/tags/v1.1.tar.gz',
+  download_url = 'https://github.com/vishishtpriyadarshi/MA691-COBRA-6/archive/refs/tags/v1.4.tar.gz',
   keywords = ['Classification', 'Imbalanced Data', 'Machine Learning'],
   install_requires=[
           'numpy',
