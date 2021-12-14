@@ -102,6 +102,11 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 ```
 
 
+## Results:
+Comparison of negative recall for different algorithms across various datasets - 
+![Plot](https://github.com/vishishtpriyadarshi/imbcobra/blob/main/utils/negative_recall.png?raw=true)
+
+
 ## Folder Structure:
 
 ```bash
@@ -155,11 +160,6 @@ X_undersampled, y_undersampled = X[verdict, :], y_train[verdict]
 │ 
 └── ...
 ```
-
-
-## Results:
-Comparison of negative recall for different algorithms across various datasets - 
-![Plot](https://github.com/vishishtpriyadarshi/imbcobra/blob/main/utils/negative_recall.png?raw=true)
 
 
 ## References:
