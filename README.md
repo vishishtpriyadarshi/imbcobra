@@ -1,5 +1,5 @@
 # COBRA for Classification tasks on Imbalanced Data
-Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem as project (group Cobra-6) for the course MA691: Advanced Statistical Algorithms, taken in Monsoon Semester 2021 at IIT Guwahati.   
+Implementation of the COBRA model and various undersampling algorithms to handle the Class Imbalance Problem as project (group Cobra-6) for the course MA691: Advanced Statistical Algorithms (Instructor: Dr. Arabin Kumar Dey), taken in Monsoon Semester 2021 at IIT Guwahati.   
 A new hybrid algorithm ``CobraBoost`` is implemented which combines COBRA with AdaBoost to efficiently deal with imbalanced data.
 
 
